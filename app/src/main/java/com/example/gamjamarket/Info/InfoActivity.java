@@ -21,6 +21,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -42,6 +44,7 @@ public class InfoActivity extends AppCompatActivity {
     private Button unregisterButton;
     private ImageView profileImageView;
 
+    private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -120,6 +123,10 @@ public class InfoActivity extends AppCompatActivity {
                                 Log.w(TAG, "Error deleting document", e);
                             }
                         });
+
+                //RealtimeDB user삭제
+                mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.child("users").child(uid).removeValue();
 
                 //좋아요 목록 삭제
                 db.collection("likes").document(uid).delete()

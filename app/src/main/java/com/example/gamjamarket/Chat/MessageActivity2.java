@@ -215,7 +215,6 @@ public class MessageActivity2 extends AppCompatActivity {
         }
         //메세지 읽어오기
         void getMessageList(){
-            mDatabase = FirebaseDatabase.getInstance().getReference();
             databaseReference = mDatabase.child("chatrooms2").child(chatRoomUid).child("comments");
             valueEventListener = databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
