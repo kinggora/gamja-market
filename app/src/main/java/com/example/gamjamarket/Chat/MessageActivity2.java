@@ -57,6 +57,7 @@ public class MessageActivity2 extends AppCompatActivity {
     private ImageView imageView_pImage;
     private TextView textView_pTitle;
     private LinearLayout linearLayoutProduct;
+    private String pid;
 
     private String uid;
     private String chatRoomUid;
@@ -82,6 +83,7 @@ public class MessageActivity2 extends AppCompatActivity {
         destinationUid = getIntent().getStringExtra("destinationUid");
         productImage = getIntent().getStringExtra("productImage");
         productName = getIntent().getStringExtra("productName");
+        pid = getIntent().getStringExtra("pid");
         boardNum = getIntent().getStringExtra("boardNum");
         linearLayoutProduct = (LinearLayout)findViewById(R.id.messageActivity_LinearLayout);
         button = (ImageView)findViewById(R.id.messageActivity_button);
@@ -161,6 +163,7 @@ public class MessageActivity2 extends AppCompatActivity {
                     PostlistItem postlistItem = new PostlistItem();
                     postlistItem.setTitle(productName);
                     postlistItem.setContents(productImage);
+                    postlistItem.setPid(pid);
                     mDatabase.child("chatrooms").child(destinationUid).child("post").setValue(postlistItem).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {

@@ -88,7 +88,9 @@ public class InfoFragment extends Fragment {
         reviewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent reviewActivity = new Intent(v.getContext(), ReviewActivity.class);
+                reviewActivity.putExtra("uid", uid);
+                startActivity(reviewActivity);
             }
         });
 

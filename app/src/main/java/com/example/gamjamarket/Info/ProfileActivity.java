@@ -33,7 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_info);
+        setContentView(R.layout.activity_profile);
 
         ProfileImg profileImg = new ProfileImg();
 
@@ -75,6 +75,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileActivity.this, ReviewActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
             }
         });

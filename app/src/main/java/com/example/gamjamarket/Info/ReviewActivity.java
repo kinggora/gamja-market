@@ -45,7 +45,7 @@ public class ReviewActivity extends AppCompatActivity {
     class ReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        String uid = mAuth.getCurrentUser().getUid();//판매자 uid로 변경
+        String uid = getIntent().getStringExtra("uid");//판매자 uid로 변경
         List<ReviewModel> reviewModels;
         public ReviewAdapter(){
             reviewModels = new ArrayList<>();
