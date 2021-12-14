@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.gamjamarket">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:networkSecurityConfig="@xml/network_config">
+        <activity android:name=".Writing.WritingActivity" />
+        <activity android:name=".Login.StartActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Login.LoginActivity" />
+        <activity android:name=".Login.RegisterActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Chat.MessageActivity" />
+        <activity android:name=".Chat.MessageActivity2" />
+        <activity android:name=".Info.InfoActivity" />
+        <activity android:name=".Info.InfoModifyActivity"
+            android:parentActivityName=".Info.InfoActivity"/>
+        <activity android:name=".Info.PasswordModifyActivity"
+            android:parentActivityName=".Info.InfoActivity"/>
+        <activity android:name=".Login.DongRegisterActivity" />
+        <activity android:name=".Home1.PostviewActivity" />
+        <activity android:name=".Home2.PostviewActivity2" />
+        <activity android:name=".Home1.ImageviewActivity" />
+        <activity android:name=".Category.CategoryActivity" />
+        <activity android:name=".Category.PostInCategory1Activity" />
+        <activity android:name=".Category.PostInCategory2Activity" />
+        <activity android:name=".Setting.LikesListActivity" />
+        <activity android:name=".Setting.MyItemActivity"/>
+        <activity android:name=".Category.SearchResultActivity"/>
+        <activity android:name=".Chat.MessageActivity"/>
+        <activity android:name=".Setting.ModifyPostActivity"/>
+    </application>
+</manifest>
