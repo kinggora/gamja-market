@@ -70,21 +70,20 @@ public class LikesListFragment2 extends Fragment {
                     if (document.exists()) {
                         if(document.get("board2")!=null){
                             List<String> board2 = (List<String>)document.get("board2");
+                            if(board2.size()!=0){
+                                imgview.setVisibility(View.INVISIBLE);
+                            }else{
+                                imgview.setVisibility(View.VISIBLE);
+                                imgview.setImageResource(R.drawable.nodonate);
+                            }
                             for(String mpid: board2) {
                                 db.collection("board2").document(mpid)
                                         .addSnapshotListener(new EventListener<DocumentSnapshot>() {
                                             @Override
                                             public void onEvent(DocumentSnapshot ds, FirebaseFirestoreException error) {
-                                                postList.clear();
                                                 if (error != null) {
                                                     Log.e("Firestore error", error.getMessage());
                                                     return;
-                                                }
-                                                if(board2.size()!=0){
-                                                    imgview.setVisibility(View.INVISIBLE);
-                                                }else{
-                                                    imgview.setVisibility(View.VISIBLE);
-                                                    imgview.setImageResource(R.drawable.nodonate);
                                                 }
                                                 if (ds != null && ds.exists()){
                                                     String title = ds.getString("title");
@@ -129,10 +128,10 @@ public class LikesListFragment2 extends Fragment {
         if (!loaded) {
             loaded = true;
         } else {
+            postList.clear();
             postAdapter = new LikesList2Adapter(postList, getActivity());
             likesListView.setAdapter(postAdapter);
         }
-
         getPostSet();
     }
 

@@ -40,6 +40,7 @@ public class MyItemDialog {
         dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.popup_myitem);
+        dialog.setCancelable(false);
         setDialog(dialog);
 
 
@@ -69,7 +70,9 @@ public class MyItemDialog {
         changeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setOnsale(false);
+                dialog.dismiss();
+                SelectUserDialog newDialog = new SelectUserDialog(context, item);
+                newDialog.callDialog();
             }
         });
 
@@ -128,18 +131,4 @@ public class MyItemDialog {
         });
     }
 
-    public void setOnsale(boolean onsale){
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("board1").document(item.getPid()).update("onsale", onsale).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(context, "거래완료로 상태가 변경되었습니다",
-                        Toast.LENGTH_SHORT).show();
-                //((MyItemActivity)context).get
-                dialog.dismiss();
-                SelectUserDialog newDialog = new SelectUserDialog(context, item);
-                newDialog.callDialog();
-            }
-        });
-    }
 }

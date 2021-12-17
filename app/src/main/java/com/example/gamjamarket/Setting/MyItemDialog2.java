@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
@@ -34,6 +35,7 @@ public class MyItemDialog2 {
         dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.popup_myitem2);
+        dialog.setCancelable(false);
         setDialog(dialog);
 
 
@@ -104,9 +106,11 @@ public class MyItemDialog2 {
     }
 
     public void modifyPost(){
-
+        Intent modifyPostActivity = new Intent(context, ModifyPostActivity.class);
+        modifyPostActivity.putExtra("pid", item.getPid());
+        context.startActivity(modifyPostActivity);
+        dialog.dismiss();
     }
-
     private void deletePost(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("board1").document(item.getPid()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {

@@ -12,11 +12,11 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="30dp"
-            android:text="거래 후기 작성이 완료되었습니다" />
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:gravity="center"
+            android:text="거래 후기 작성이\n완료되었습니다"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/wrotereview_btn"

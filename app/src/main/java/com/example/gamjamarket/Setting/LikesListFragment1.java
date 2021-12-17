@@ -21,6 +21,7 @@ import com.example.gamjamarket.Home1.HomePostAdapter;
 import com.example.gamjamarket.Model.PostlistItem;
 import com.example.gamjamarket.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -94,17 +95,26 @@ public class LikesListFragment1 extends Fragment {
                                                     String contents = ds.getString("contents");
                                                     String wuid = ds.getString("uid");
                                                     String type = ds.getString("type");
-                                                    String nickname = ds.getString("nickname");
                                                     Date createdAt = ds.getDate("createdAt");
                                                     String pid = ds.getString("pid");
                                                     int likes = ds.getDouble("likes").intValue();
 
-                                                    PostlistItem item = new PostlistItem(pid, title, contents, type, wuid, nickname, createdAt, likes);
-                                                    postList.add(item);
+                                                    db.collection("users").document(wuid).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                        @Override
+                                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                            String nickname = documentSnapshot.getString("nickname");
+                                                            if(nickname != null){
+                                                                PostlistItem item = new PostlistItem(pid, title, contents, type, wuid, nickname, createdAt, likes);
+                                                                postList.add(item);
+                                                                postAdapter.notifyDataSetChanged();
+
+                                                            }
+                                                        }
+                                                    });
                                                 } else if(!ds.exists()){
                                                     db.collection("likes").document(uid).update("board1", FieldValue.arrayRemove(mpid));
                                                 }
-                                                postAdapter.notifyDataSetChanged();
+
                                             }
                                         });
                             }

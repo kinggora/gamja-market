@@ -138,7 +138,6 @@ public class PostviewActivity2 extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 like = !like;
-                //postviewFragemnt.likeClick(like);
                 setLikeUI();
                 setLikeDB();
             }

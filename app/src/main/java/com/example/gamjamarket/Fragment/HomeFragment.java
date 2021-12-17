@@ -29,8 +29,10 @@ import com.example.gamjamarket.Model.PostlistItem;
 import com.example.gamjamarket.R;
 import com.example.gamjamarket.Setting.LikesListActivity;
 import com.example.gamjamarket.Setting.MyItemActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
@@ -106,7 +108,8 @@ public class HomeFragment extends Fragment {
                                 categoryList.add(model);
                             }
                         }
-                        categoryList.add(new CategoryModel("more", "더보기", "https://firebasestorage.googleapis.com/v0/b/gamjamarket-1b94d.appspot.com/o/category_icon%2Fc1-18.png?alt=media&token=c333549d-093c-4241-b49a-233f043f0f45"));
+                        categoryList.add(new CategoryModel("more", "더보기",
+                                "https://firebasestorage.googleapis.com/v0/b/gamjamarket-1b94d.appspot.com/o/category_icon%2F19059.png?alt=media&token=19c36d1f-7696-40a8-a566-cc8cfef63a87"));
                         categoryAdapter.notifyDataSetChanged();
                     }
                 });
@@ -144,15 +147,26 @@ public class HomeFragment extends Fragment {
                                             int likes = document.getDouble("likes").intValue();
 
                                             DocumentReference wuserDoc = db.collection("users").document(wuid);
-                                            wuserDoc.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                            wuserDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                                 @Override
-                                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                                    String nickname = documentSnapshot.getString("nickname");
-                                                    PostlistItem item = new PostlistItem(pid, title, contents, type, wuid, nickname, createdAt, likes);
-                                                    postList.add(item);
-                                                    postAdapter.notifyDataSetChanged();
+                                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                    if (task.isSuccessful()) {
+                                                        DocumentSnapshot doc = task.getResult();
+                                                        if (document.exists()) {
+                                                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                                            String nickname = doc.getString("nickname");
+                                                            PostlistItem item = new PostlistItem(pid, title, contents, type, wuid, nickname, createdAt, likes);
+                                                            postList.add(item);
+                                                            postAdapter.notifyDataSetChanged();
+                                                        } else {
+                                                            Log.d(TAG, "No such document");
+                                                        }
+                                                    } else {
+                                                        Log.d(TAG, "get failed with ", task.getException());
+                                                    }
                                                 }
                                             });
+
                                         }
 
                                     }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,18 +23,23 @@ import com.example.gamjamarket.Setting.LikesListActivity;
 import com.example.gamjamarket.Setting.MyItemActivity;
 import com.example.gamjamarket.Setting.ProfileImg;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class InfoFragment extends Fragment {
-    private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private String uid = mAuth.getCurrentUser().getUid();
 
     private TextView nickname;
     private ImageView profileImageView;
+    private RatingBar reviewRatingbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,9 +50,9 @@ public class InfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_info, container, false);
-        mAuth = FirebaseAuth.getInstance();
-        String uid = mAuth.getCurrentUser().getUid();
 
+
+        reviewRatingbar = view.findViewById(R.id.infoActivity_ratingbar);
         nickname = view.findViewById(R.id.infoFragment_textview_nickname);
         profileImageView = view.findViewById(R.id.infoFragment_imageview);
         ImageView settingBtn = view.findViewById(R.id.infoFragment_btn_setting);
@@ -115,6 +121,7 @@ public class InfoFragment extends Fragment {
                 }
             }
         });
+        setRatingbar();
     }
 
     public void onResume(){
@@ -132,6 +139,31 @@ public class InfoFragment extends Fragment {
             ((MainActivity) activity).findViewById(R.id.main_search_button).setVisibility(View.INVISIBLE);
             ((MainActivity) activity).findViewById(R.id.main_like_button).setVisibility(View.INVISIBLE);
         }
+    }
+
+    public void setRatingbar(){
+        db.collection("users").document(uid).collection("review").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Double sum = 0.0;
+                        int n = queryDocumentSnapshots.getDocuments().size();
+                        for(DocumentSnapshot ds : queryDocumentSnapshots.getDocuments()) {
+                            if (ds.exists() && ds != null) {
+                                Double rating = ds.getDouble("rating");
+                                sum += rating;
+                            }
+                        }
+                        if(n > 0){
+                            reviewRatingbar.setRating((float)(sum/n));
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
     }
 
 }

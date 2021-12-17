@@ -56,6 +56,7 @@ public class SelectUserDialog {
         dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.popup_selectuser);
+        dialog.setCancelable(false);
         setDialog(dialog);
 
 
@@ -85,6 +86,7 @@ public class SelectUserDialog {
             @Override
             public void onClick(View v) {
                 if(selected){
+                    setOnsale(false);
                     ReviewWritingDialog newDialog = new ReviewWritingDialog(context, userList.get(selectedPosition), dialog);
                     newDialog.callDialog();
                 }
@@ -172,5 +174,16 @@ public class SelectUserDialog {
             selected = true;
         }
         selectedPosition = i;
+    }
+
+    public void setOnsale(boolean onsale){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("board1").document(postItem.getPid()).update("onsale", onsale).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(context, "거래완료로 상태가 변경되었습니다",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

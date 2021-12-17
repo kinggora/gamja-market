@@ -68,6 +68,7 @@ public class MyItemFragment extends Fragment {
 
     public void getPostSet() {
         System.out.println("data setting");
+        postList.clear();
         Thread thread = new Thread(()->{
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             db.collection("board1")
@@ -126,7 +127,7 @@ public class MyItemFragment extends Fragment {
         } else {
             postAdapter = new MyItemAdapter(postList, ONSALE, getActivity());
             myitemListView.setAdapter(postAdapter);
-            getPostSet();
         }
+        getPostSet();
     }
 }
