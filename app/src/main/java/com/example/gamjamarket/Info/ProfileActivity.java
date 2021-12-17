@@ -44,7 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
         product = (LinearLayout)findViewById(R.id.profileActivity_product);
         review = (LinearLayout)findViewById(R.id.profileActivity_review);
         image = (ImageView) findViewById(R.id.profileActivity_imageview);
-        backBtn = (ImageView) findViewById(R.id.infoActivity_back);
+        backBtn = (ImageView) findViewById(R.id.profileActivity_back);
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override

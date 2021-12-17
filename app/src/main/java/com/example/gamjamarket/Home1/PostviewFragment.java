@@ -84,7 +84,7 @@ public class PostviewFragment extends Fragment {
             public void onClick(View v) {
                 Intent ProfileActivity = new Intent(v.getContext(), com.example.gamjamarket.Info.ProfileActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("uid", userModel.getUid());
+                bundle.putString("uid", model.getUid());
                 ProfileActivity.putExtras(bundle);
                 v.getContext().startActivity(ProfileActivity);
             }

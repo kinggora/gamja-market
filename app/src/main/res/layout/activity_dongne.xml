@@ -17,7 +17,9 @@
             style="@style/TextStyle"
             android:layout_width="wrap_content"
             android:layout_height="115dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:includeFontPadding="false"
             android:text="감자마켓 이용 전\n지역을 설정해 주세요" />
 
         <TextView
@@ -25,7 +27,8 @@
             style="@style/TextStyle2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="18dp"
+            android:includeFontPadding="false"
             android:text="우리 동네 지역 인증 후 상품을 등록하고\n인증된 이웃들과 거래를 시작하세요" />
 
         <androidx.constraintlayout.widget.ConstraintLayout

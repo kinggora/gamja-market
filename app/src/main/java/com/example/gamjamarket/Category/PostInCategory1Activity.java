@@ -106,16 +106,23 @@ public class PostInCategory1Activity extends Activity {
                                             String contents = document.getString("contents");
                                             String wuid = document.getString("uid");
                                             String type = document.getString("type");
-                                            String nickname = document.getString("nickname");
                                             Date createdAt = document.getDate("createdAt");
                                             String pid = document.getString("pid");
                                             int likes = document.getDouble("likes").intValue();
 
-                                            PostlistItem item = new PostlistItem(pid, title, contents, type, wuid, nickname, createdAt, likes);
-                                            postList.add(item);
+                                            db.collection("users").document(wuid).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                @Override
+                                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                    String nickname = documentSnapshot.getString("nickname");
+                                                    PostlistItem item = new PostlistItem(pid, title, contents, type, wuid, nickname, createdAt, likes);
+                                                    postList.add(item);
+                                                    postAdapter.notifyDataSetChanged();
+                                                }
+                                            });
+
 
                                         }
-                                        postAdapter.notifyDataSetChanged();
+
                                     }
                                 }
                             });

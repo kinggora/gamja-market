@@ -42,8 +42,8 @@ public class ReviewActivity extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.reviewFragment_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(ReviewActivity.this));
         recyclerView.setAdapter(new ReviewActivity.ReviewAdapter());
-        nonreview = (ImageView) findViewById(R.id.reviewActivity_Imageview);
-        backBtn = (ImageView) findViewById(R.id.infoActivity_back);
+        //nonreview = (ImageView) findViewById(R.id.reviewActivity_Imageview);
+        backBtn = (ImageView) findViewById(R.id.reviewActivity_back);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +59,7 @@ public class ReviewActivity extends AppCompatActivity {
         List<ReviewModel> reviewModels;
         public ReviewAdapter(){
             reviewModels = new ArrayList<>();
-            if (reviewModels == null){nonreview.setVisibility(View.VISIBLE);}
+            //if (reviewModels == null){nonreview.setVisibility(View.VISIBLE);}
             DocumentReference docRef = db.collection("users").document(uid);
             docRef.collection("review").document().get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
@@ -74,7 +74,7 @@ public class ReviewActivity extends AppCompatActivity {
                             reviewModel.setProfileimg(document.getString("profileimg"));
                             reviewModel.setRating(document.getDouble("rating").floatValue());
                             reviewModels.add(reviewModel);
-                            nonreview.setVisibility(View.INVISIBLE);
+                            //nonreview.setVisibility(View.INVISIBLE);
                         }
                     }
                 }

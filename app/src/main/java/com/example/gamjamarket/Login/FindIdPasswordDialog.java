@@ -131,7 +131,8 @@ public class FindIdPasswordDialog {
             @Override
             public void onClick(View v) {
                 String phone = PHONE_EDIT.getText().toString();
-                startPhoneNumberVerification(phone);
+                String mphone = "+82" + phone.substring(1);
+                startPhoneNumberVerification(mphone);
             }
         });
 

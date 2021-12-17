@@ -115,10 +115,10 @@ public class RegisterActivity extends Activity {
             public void onClick(View v) {
                 //test PhoneNumber: +16505553434 / VerificationCode: 654321
                 String mPhoneNumber = editPhone.getText().toString();
-                startPhoneNumberVerification(mPhoneNumber);
+                //startPhoneNumberVerification(mPhoneNumber);
                 //한국식 핸드폰 번호
-                //String phoneNumber = "+82" + mPhoneNumber.substring(1);
-                //startPhoneNumberVerification(phoneNumber);
+                String phoneNumber = "+82" + mPhoneNumber.substring(1);
+                startPhoneNumberVerification(phoneNumber);
             }
         });
 

@@ -200,7 +200,8 @@ public class PostviewActivity extends FragmentActivity {
                 messageActivity.putExtra("destinationUid",model.getUid());
                 messageActivity.putExtra("productImage",model.getContents());
                 messageActivity.putExtra("productName",model.getTitle());
-                //messageActivity.putExtra("productPid",model.getPid());
+                messageActivity.putExtra("destinationNickname",userModel.getUsernickname());
+                messageActivity.putExtra("productPid",model.getPid());
                 messageActivity.putExtra("boardNum","board1");
                 startActivity(messageActivity);
             }
