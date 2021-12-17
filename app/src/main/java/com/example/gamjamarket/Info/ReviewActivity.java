@@ -31,6 +31,8 @@ public class ReviewActivity extends AppCompatActivity {
     private static final String TAG = "ReviewActivity";
 
     private RecyclerView recyclerView;
+    public ImageView nonreview;
+    private ImageView backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,14 @@ public class ReviewActivity extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.reviewFragment_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(ReviewActivity.this));
         recyclerView.setAdapter(new ReviewActivity.ReviewAdapter());
+        nonreview = (ImageView) findViewById(R.id.reviewActivity_Imageview);
+        backBtn = (ImageView) findViewById(R.id.infoActivity_back);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     class ReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -49,6 +59,7 @@ public class ReviewActivity extends AppCompatActivity {
         List<ReviewModel> reviewModels;
         public ReviewAdapter(){
             reviewModels = new ArrayList<>();
+            if (reviewModels == null){nonreview.setVisibility(View.VISIBLE);}
             DocumentReference docRef = db.collection("users").document(uid);
             docRef.collection("review").document().get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
@@ -63,6 +74,7 @@ public class ReviewActivity extends AppCompatActivity {
                             reviewModel.setProfileimg(document.getString("profileimg"));
                             reviewModel.setRating(document.getDouble("rating").floatValue());
                             reviewModels.add(reviewModel);
+                            nonreview.setVisibility(View.INVISIBLE);
                         }
                     }
                 }
@@ -103,5 +115,9 @@ public class ReviewActivity extends AppCompatActivity {
                 ratingBar = (RatingBar) view.findViewById(R.id.reviewitem_ratingbar);
             }
         }
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

@@ -58,11 +58,13 @@ public class MessageActivity2 extends AppCompatActivity {
     private TextView textView_pTitle;
     private LinearLayout linearLayoutProduct;
     private String pid;
+    private ImageView backBtn;
+    private String destinationNickname;
+    public TextView nickname;
 
     private String uid;
     private String chatRoomUid;
     private RecyclerView recyclerView;
-
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
     private DatabaseReference databaseReference;
     private ValueEventListener valueEventListener;
@@ -85,6 +87,7 @@ public class MessageActivity2 extends AppCompatActivity {
         productName = getIntent().getStringExtra("productName");
         pid = getIntent().getStringExtra("pid");
         boardNum = getIntent().getStringExtra("boardNum");
+        destinationNickname = getIntent().getStringExtra("destinationNickname");
         linearLayoutProduct = (LinearLayout)findViewById(R.id.messageActivity_LinearLayout);
         button = (ImageView)findViewById(R.id.messageActivity_button);
         addImage = (ImageView)findViewById(R.id.messageActivity_button_plus);
@@ -96,6 +99,16 @@ public class MessageActivity2 extends AppCompatActivity {
         textView_pTitle = (TextView) findViewById(R.id.messageActivity_toolbar_title);
         textView_pTitle.setText(productName);
         recyclerView = (RecyclerView)findViewById(R.id.messageActivity_recyclerview);
+        backBtn = (ImageView) findViewById(R.id.infoActivity_back);
+        nickname = (TextView) findViewById(R.id.messageItem_textview_name);
+        nickname.setText(destinationNickname);
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         linearLayoutProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -269,7 +282,7 @@ public class MessageActivity2 extends AppCompatActivity {
             //내가보낸 메세지
             if(comments.get(position).uid.equals(uid)) {
                 messageViewHolder.textView_message_right.setText(comments.get(position).message);
-                //messageViewHolder.textView_message_right.setBackgroundResource(R.drawable.rightbubble);
+                messageViewHolder.textView_message_right.setBackgroundResource(R.drawable.sendmessage);
                 messageViewHolder.textView_message_right.setVisibility(View.VISIBLE);
                 messageViewHolder.textView_message_left.setVisibility(View.INVISIBLE);
                 messageViewHolder.linearLayout_destination.setVisibility(View.INVISIBLE);
@@ -285,7 +298,7 @@ public class MessageActivity2 extends AppCompatActivity {
                         .into(messageViewHolder.imageview_profile);*/
                 messageViewHolder.textview_name.setText(userModel.getNickname());
                 messageViewHolder.linearLayout_destination.setVisibility(View.VISIBLE);
-                messageViewHolder.textView_message_left.setBackgroundResource(R.drawable.leftbubble);
+                messageViewHolder.textView_message_left.setBackgroundResource(R.drawable.recivemessage);
                 messageViewHolder.textView_message_left.setText(comments.get(position).message);
                 messageViewHolder.textView_message_left.setTextSize(25);
                 messageViewHolder.textView_message_left.setVisibility(View.VISIBLE);

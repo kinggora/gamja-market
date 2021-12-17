@@ -36,7 +36,7 @@ import java.util.TreeMap;
 public class ChatFragment2 extends Fragment {
 
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd");
-
+    private ImageView nonChat;
     public static ChatFragment2 newInstance() {
         return new ChatFragment2();
     }
@@ -48,6 +48,7 @@ public class ChatFragment2 extends Fragment {
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.chatfragment_recyclerview);
         recyclerView.setAdapter(new ChatRecyclerViewAdapter());
         recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
+        nonChat = (ImageView) view.findViewById(R.id.chatFragment_Imageview);
         return view;
     }
 
@@ -55,7 +56,9 @@ public class ChatFragment2 extends Fragment {
         private List<ChatModel> chatModels = new ArrayList<>();
         private String uid;
         private ArrayList<String> destinationUsers = new ArrayList<>();
+        private String destinationNickname;
         public ChatRecyclerViewAdapter(){
+            if (chatModels == null){nonChat.setVisibility(View.VISIBLE);}
             uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
             FirebaseDatabase.getInstance().getReference().child("chatrooms2").orderByChild("users/"+uid).equalTo(true).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -63,6 +66,7 @@ public class ChatFragment2 extends Fragment {
                     chatModels.clear();
                     for (DataSnapshot item: snapshot.getChildren()) {
                         chatModels.add(item.getValue(ChatModel.class));
+                        nonChat.setVisibility(View.INVISIBLE);
                     }
                     notifyDataSetChanged();
                 }
@@ -100,8 +104,8 @@ public class ChatFragment2 extends Fragment {
                             .load(userModel.profileImageUrl)
                             .apply(new RequestOptions().circleCrop())
                             .into(customViewHolder.imageView);*/
-                    customViewHolder.textView_title.setText(userModel.getNickname());
-                }
+                    destinationNickname = userModel.getNickname();
+                    customViewHolder.textView_title.setText(destinationNickname);                }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
@@ -116,10 +120,13 @@ public class ChatFragment2 extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), MessageActivity.class);
-                    intent.putExtra("destinationUid", destinationUsers.get(position));
+                    Bundle bundle = new Bundle();
+                    bundle.putString("destinationUid", destinationUsers.get(position));
+                    bundle.putString("destinationNickname", destinationNickname);
                     //대화창 넘기는 애니메이션
 /*                    ActivityOptions activityOptions  = ActivityOptions.makeCustomAnimation(v.getContext(), R.anim.fromright, R.anim.toleft);
                     startActivity(intent, activityOptions.toBundle());*/
+                    intent.putExtras(bundle);
                     startActivity(intent);
 
                 }

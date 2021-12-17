@@ -1,5 +1,6 @@
 package com.example.gamjamarket.Info;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
@@ -43,6 +45,7 @@ public class InfoActivity extends AppCompatActivity {
     private Button passwordButton;
     private Button unregisterButton;
     private ImageView profileImageView;
+    private ImageView backBtn;
 
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
@@ -66,8 +69,16 @@ public class InfoActivity extends AppCompatActivity {
         passwordButton = (Button) findViewById(R.id.infoActivity_btn_passwordmodify);
         unregisterButton = (Button) findViewById(R.id.infoActivity_btn_unregister);
         profileImageView = (ImageView) findViewById(R.id.infoActivity_imageview);
+        backBtn = (ImageView) findViewById(R.id.infoActivity_back);
 
         setUI(uid);
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         modifyButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,10 +92,7 @@ public class InfoActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAuth.signOut();
-                finish();
-                Intent intent = new Intent(InfoActivity.this, MainActivity.class);
-                startActivity(intent);
+                logoutAlert();
             }
         });
 
@@ -99,56 +107,79 @@ public class InfoActivity extends AppCompatActivity {
         unregisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseUser user = mAuth.getCurrentUser();
-                user.delete()
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d(TAG, "User account deleted.");
-                                }
-                            }
-                        });
-                db.collection("users").document(uid)
-                        .delete()
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d(TAG, "DocumentSnapshot successfully deleted!");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error deleting document", e);
-                            }
-                        });
-
-                //RealtimeDB user삭제
-                mDatabase = FirebaseDatabase.getInstance().getReference();
-                mDatabase.child("users").child(uid).removeValue();
-
-                //좋아요 목록 삭제
-                db.collection("likes").document(uid).delete()
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d(TAG, "DocumentSnapshot successfully deleted!");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error deleting document", e);
-                            }
-                        });
-
-                    //게시글 삭제
-//                db.collection("board1")
-//                        .whereEqualTo("uid", uid).delete();
+                unregisterAlert(uid);
             }
         });
 
+    }
+    public void logoutAlert() {
+
+        new AlertDialog.Builder(InfoActivity.this)
+                .setMessage("정말로 로그아웃하시겠습니까?"+"/n" +"확인 버튼을 누르면 로그아웃됩니다.")
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        mAuth.signOut();
+                        finish();
+                        Intent intent = new Intent(InfoActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                }).show();
+    }
+    public void unregisterAlert(String uid) {
+
+        new AlertDialog.Builder(InfoActivity.this)
+                .setMessage("정말로 탈퇴하시겠습니까?"+"/n" +"확인 버튼을 누르면 탈퇴 처리됩니다.")
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        user.delete()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Log.d(TAG, "User account deleted.");
+                                        }
+                                    }
+                                });
+                        db.collection("users").document(uid)
+                                .delete()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w(TAG, "Error deleting document", e);
+                                    }
+                                });
+
+                        //RealtimeDB user삭제
+                        mDatabase = FirebaseDatabase.getInstance().getReference();
+                        mDatabase.child("users").child(uid).removeValue();
+
+                        //좋아요 목록 삭제
+                        db.collection("likes").document(uid).delete()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w(TAG, "Error deleting document", e);
+                                    }
+                                });
+
+                        //게시글 삭제
+//                db.collection("board1")
+//                        .whereEqualTo("uid", uid).delete();
+                    }
+                }).show();
     }
 
     public void setUI(String uid){
@@ -180,5 +211,10 @@ public class InfoActivity extends AppCompatActivity {
         String uid = mAuth.getCurrentUser().getUid();
         setUI(uid);
 
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }
