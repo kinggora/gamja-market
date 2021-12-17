@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import com.example.gamjamarket.Chat.MessageActivity2;
 import com.example.gamjamarket.Model.WriteinfoModel;
+import com.example.gamjamarket.Model.WriteinfoModel2;
 import com.example.gamjamarket.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -69,18 +70,20 @@ public class PostviewActivity2 extends FragmentActivity {
                     if (document.exists()) {
                         String title = document.getString("title");
                         String category = document.getString("category");
-                        String explain = document.getString("explain");
+                        String explain1 = document.getString("explain1");
+                        String explain2 = document.getString("explain2");
+                        String explain3 = document.getString("explain3");
                         String contents = document.getString("contents");
-                        String address = document.getString("address");
+                        //String address = document.getString("address");
                         String callnumber = document.getString("callnumber");
-                        String wuid = document.getString("uid");
+                        //String wuid = document.getString("uid");
                         String nickname = document.getString("nickname");
                         Date createdAt = document.getDate("createAt");
                         String pid = document.getString("pid");
                         int likes = document.getDouble("likes").intValue();
 
-                        WriteinfoModel postModel = new WriteinfoModel(title, category, explain, contents, address, callnumber, wuid, nickname, createdAt);
-                        postModel.setPid(pid);
+                        WriteinfoModel2 postModel
+                                = new WriteinfoModel2(title, category, nickname, contents, explain1, explain2, explain3, pid, callnumber);
                         postModel.setLikes(likes);
 
                         setUI(postModel);
@@ -95,12 +98,7 @@ public class PostviewActivity2 extends FragmentActivity {
         });
     }
 
-    public void setUI(WriteinfoModel model){
-        if(model.getUid().equals(uid)){
-            chatBtn.setEnabled(false);
-            chatBtn.setClickable(false);
-        }
-
+    public void setUI(WriteinfoModel2 model){
         PostviewFragment2 postviewFragemnt = new PostviewFragment2();
         Bundle bundle = new Bundle();
         bundle.putSerializable("writeinfoModel", model);

@@ -47,13 +47,15 @@
             android:textStyle="bold"
             android:textColor="#191919"
             android:textSize="20sp"/>
-       <RatingBar
-           android:layout_marginBottom="40dp"
-           android:layout_marginTop="10dp"
+
+        <RatingBar
             android:id="@+id/profileActivity_ratingbar"
+            style="@style/CustomRatingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/CustomRatingBarStyle"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="40dp"
+            android:isIndicator="true" />
     </LinearLayout>
     <LinearLayout
         android:layout_marginTop="5dp"

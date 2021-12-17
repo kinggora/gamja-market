@@ -3,24 +3,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="wrap_content">
-    <RelativeLayout
-        android:background="@drawable/backborder"
-        android:id="@+id/topRelative"
-        android:layout_width="match_parent"
-        android:layout_height="80dp">
 
-        <TextView
-            android:layout_marginTop="18dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="24dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="내 정보"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#191919"/>
-    </RelativeLayout>
     <RelativeLayout
         android:layout_below="@+id/topRelative"
         android:padding="23dp"
@@ -44,14 +27,16 @@
             android:layout_toRightOf="@id/infoFragment_imageview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
         <RatingBar
-            android:layout_marginTop="6dp"
             android:id="@+id/infoActivity_ratingbar"
-            android:layout_below="@+id/infoFragment_textview_nickname"
-            android:layout_toRightOf="@id/infoFragment_imageview"
+            style="@style/CustomRatingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/CustomRatingBarStyle"/>
+            android:layout_below="@+id/infoFragment_textview_nickname"
+            android:layout_marginTop="6dp"
+            android:layout_toRightOf="@id/infoFragment_imageview"
+            android:isIndicator="true" />
         <ImageView
             android:onClick="onSlideViewButtonClick"
             android:id="@+id/infoFragment_btn_setting"
