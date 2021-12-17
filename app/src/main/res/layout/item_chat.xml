@@ -4,15 +4,17 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:background="@drawable/border"
-    android:layout_height="70dp">
+    android:layout_height="90dp">
     <ImageView
-        android:layout_margin="10dp"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:id="@+id/chatitem_imageview"/>
 
     <RelativeLayout
-        android:layout_width="243dp"
+        android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -22,34 +24,34 @@
             android:id="@+id/chatitem_textview_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="방 이름"
-            android:textSize="20dp" />
+            android:layout_marginTop="20dp"
+            android:text="닉네임 입니다"
+            android:textColor="#191919"
+            android:textStyle="bold"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/chatitem_textview_lastMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/chatitem_textview_title"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="9dp"
             android:text="마지막 메세지"
-            android:textColor="@android:color/darker_gray" />
+            android:textSize="16sp"
+            android:textColor="#191919" />
 
         <TextView
             android:id="@+id/chatitem_textview_timestamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_marginStart="111dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
             android:text="2011.11.11"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="#767676"
             android:textSize="12sp" />
 
         <TextView
+            android:visibility="invisible"
             android:id="@+id/chatitem_textview_unread"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,7 +63,9 @@
             android:text="1" />
     </RelativeLayout>
     <ImageView
-        android:layout_margin="10dp"
+        android:background="@drawable/reviewborder"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="center"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/chatitem_imageview_product"/>

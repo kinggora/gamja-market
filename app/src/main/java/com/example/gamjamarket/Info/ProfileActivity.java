@@ -27,6 +27,7 @@ public class ProfileActivity extends AppCompatActivity {
     private LinearLayout product;
     private LinearLayout review;
     private ImageView image;
+    private ImageView backBtn;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -43,7 +44,14 @@ public class ProfileActivity extends AppCompatActivity {
         product = (LinearLayout)findViewById(R.id.profileActivity_product);
         review = (LinearLayout)findViewById(R.id.profileActivity_review);
         image = (ImageView) findViewById(R.id.profileActivity_imageview);
+        backBtn = (ImageView) findViewById(R.id.infoActivity_back);
 
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         DocumentReference docRef = db.collection("users").document(uid);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -80,5 +88,9 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

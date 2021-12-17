@@ -4,36 +4,61 @@
     android:orientation="vertical"
     android:layout_height="wrap_content">
     <RelativeLayout
-        android:backgroundTint="@color/white"
-        android:layout_margin="20dp"
+        android:background="@drawable/backborder"
+        android:id="@+id/topRelative"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <TextView
+            android:layout_marginTop="18dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내 정보"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#191919"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@+id/topRelative"
+        android:padding="23dp"
+        android:background="@drawable/border"
         android:id="@+id/infoFragment_relativeLaout1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
         <ImageView
             android:id="@+id/infoFragment_imageview"
-            android:layout_margin="10dp"
+            android:layout_marginRight="15dp"
             android:layout_width="60dp"
             android:layout_height="60dp" />
         <TextView
-            android:layout_marginTop="10dp"
+            android:text="닉네임 입니다"
+            android:textStyle="bold"
+            android:textColor="#191919"
+            android:layout_marginTop="5dp"
             android:id="@+id/infoFragment_textview_nickname"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:layout_toRightOf="@id/infoFragment_imageview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <RatingBar
+            android:layout_marginTop="6dp"
             android:id="@+id/infoActivity_ratingbar"
             android:layout_below="@+id/infoFragment_textview_nickname"
             android:layout_toRightOf="@id/infoFragment_imageview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@android:style/Widget.Holo.RatingBar.Indicator"/>
+            style="@style/CustomRatingBarStyle"/>
         <ImageView
             android:onClick="onSlideViewButtonClick"
             android:id="@+id/infoFragment_btn_setting"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_margin="15dp"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_margin="24dp"
+            android:layout_centerInParent="true"
             android:layout_alignParentRight="true"
             android:src="@drawable/setting_gray"/>
     </RelativeLayout>
@@ -43,77 +68,89 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_marginTop="5dp"
+            android:background="@drawable/border"
+            android:layout_marginTop="10dp"
             android:id="@+id/infoFragment_btn_myproduct"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="54dp"
+            android:gravity="center">
             <ImageView
-                android:layout_margin="10dp"
+                android:layout_marginLeft="24dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/present_gray"/>
             <TextView
-                android:layout_gravity="center"
-                android:backgroundTint="@color/white"
-                android:layout_width="fill_parent"
+                android:textSize="16sp"
+                android:textColor="#191919"
+                android:layout_marginLeft="11dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="내 상품"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_marginTop="5dp"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:layout_marginTop="1dp"
             android:id="@+id/infoFragment_btn_heart"
             android:layout_below="@+id/infoFragment_btn_myproduct"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="54dp">
             <ImageView
-                android:layout_margin="10dp"
+                android:layout_marginLeft="24dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/heart_gray"/>
             <TextView
-                android:layout_gravity="center"
-                android:backgroundTint="@color/white"
-                android:layout_width="fill_parent"
+                android:textSize="16sp"
+                android:textColor="#191919"
+                android:layout_marginLeft="11dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="찜 목록"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_marginTop="5dp"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:layout_marginTop="1dp"
             android:id="@+id/infoFragment_btn_review"
             android:layout_below="@+id/infoFragment_btn_heart"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="54dp">
             <ImageView
-                android:layout_margin="10dp"
+                android:layout_marginLeft="24dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/review_gray"/>
             <TextView
-                android:layout_gravity="center"
-                android:backgroundTint="@color/white"
-                android:layout_width="fill_parent"
+                android:textSize="16sp"
+                android:textColor="#191919"
+                android:layout_marginLeft="11dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="받은 거래 후기"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_marginTop="5dp"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:layout_marginTop="1dp"
             android:id="@+id/infoFragment_btn_position"
             android:layout_below="@+id/infoFragment_btn_review"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="54dp">
             <ImageView
-                android:layout_margin="10dp"
+                android:layout_marginLeft="24dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/location_gray"/>
             <TextView
-                android:layout_gravity="center"
-                android:backgroundTint="@color/white"
-                android:layout_width="fill_parent"
+                android:textSize="16sp"
+                android:textColor="#191919"
+                android:layout_marginLeft="11dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="위치 정보 변경"/>
         </LinearLayout>

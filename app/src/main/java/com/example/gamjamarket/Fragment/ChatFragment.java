@@ -38,7 +38,7 @@ import java.util.TreeMap;
 public class ChatFragment extends Fragment {
 
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd");
-
+    private ImageView nonChat;
     public static ChatFragment newInstance() {
         return new ChatFragment();
     }
@@ -50,12 +50,12 @@ public class ChatFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.chatfragment_recyclerview);
         recyclerView.setAdapter(new ChatRecyclerViewAdapter());
         recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
+        nonChat = (ImageView) view.findViewById(R.id.chatFragment_Imageview);
         return view;
     }
 
     class ChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         private List<ChatModel> chatModels = new ArrayList<>();
-        private List<ChatModel> chatModels2 = new ArrayList<>();
         private String uid;
         int unreadCount = 0;
         private ArrayList<String> destinationUsers = new ArrayList<>();
@@ -63,7 +63,9 @@ public class ChatFragment extends Fragment {
         private String productName;
         private String pid;
         private String boardNum = "board1";
+        private String destinationNickname;
         public ChatRecyclerViewAdapter(){
+            if (chatModels == null){nonChat.setVisibility(View.VISIBLE);}
             uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
             FirebaseDatabase.getInstance().getReference().child("chatrooms").orderByChild("users/"+uid).equalTo(true).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -71,6 +73,7 @@ public class ChatFragment extends Fragment {
                     chatModels.clear();
                     for (DataSnapshot item: snapshot.getChildren()) {
                         chatModels.add(item.getValue(ChatModel.class));
+                        nonChat.setVisibility(View.INVISIBLE);
                     }
                     notifyDataSetChanged();
                     /*FirebaseDatabase.getInstance().getReference().child("chatrooms").child("post").orderByChild(boardNum).equalTo(true).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -137,7 +140,8 @@ public class ChatFragment extends Fragment {
                             .load(userModel.profileImageUrl)
                             .apply(new RequestOptions().circleCrop())
                             .into(customViewHolder.imageView);*/
-                    customViewHolder.textView_title.setText(userModel.getNickname());
+                    destinationNickname = userModel.getNickname();
+                    customViewHolder.textView_title.setText(destinationNickname);
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
@@ -158,6 +162,7 @@ public class ChatFragment extends Fragment {
                     bundle.putString("productImage", productImage);
                     bundle.putString("productName", productName);
                     bundle.putString("pid", pid);
+                    bundle.putString("destinationNickname", destinationNickname);
                     intent.putExtras(bundle);
                     startActivity(intent);
 
