@@ -56,9 +56,9 @@ public class PostviewActivity extends FragmentActivity {
         pid = getIntent().getExtras().getString("pid");
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        heartImage = (ImageView) findViewById(R.id.post2_heartImageview);
+        heartImage = (ImageView) findViewById(R.id.post_heartImageview);
         type = (TextView) findViewById(R.id.post_typeTextview);
-        chatBtn = (Button) findViewById(R.id.post2_chatBtn);
+        chatBtn = (Button) findViewById(R.id.post_chatBtn);
 
         Initialization();
     }
@@ -151,7 +151,7 @@ public class PostviewActivity extends FragmentActivity {
         bundle.putSerializable("writeinfoModel", model);
         bundle.putSerializable("userModel", userModel);
         postviewFragemnt.setArguments(bundle);
-        getSupportFragmentManager().beginTransaction().replace(R.id.postview2Framelayout, postviewFragemnt).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.postviewFramelayout, postviewFragemnt).commit();
 
         DocumentReference myHeartDoc = db.collection("likes").document(uid);
         myHeartDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -210,10 +210,10 @@ public class PostviewActivity extends FragmentActivity {
 
     public void setLikeUI(){
         if(like){
-            heartImage.setImageResource(R.drawable.fillheart);
+            heartImage.setImageResource(R.drawable.heart);
         }
         else{
-            heartImage.setImageResource(R.drawable.emptyheart);
+            heartImage.setImageResource(R.drawable.heart_line);
         }
     }
 

@@ -30,7 +30,8 @@
             android:parentActivityName=".Info.InfoActivity"/>
         <activity android:name=".Info.PasswordModifyActivity"
             android:parentActivityName=".Info.InfoActivity"/>
-        <activity android:name=".Login.DongRegisterActivity" />
+        <activity android:name=".Login.DongRegisterActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Home1.PostviewActivity" />
         <activity android:name=".Home2.PostviewActivity2" />
         <activity android:name=".Home1.ImageviewActivity" />
@@ -41,5 +42,6 @@
         <activity android:name=".Setting.MyItemActivity"/>
         <activity android:name=".Category.SearchResultActivity"/>
         <activity android:name=".Setting.ModifyPostActivity"/>
+        <activity android:name=".Login.RegisteredActivity"/>
     </application>
 </manifest>

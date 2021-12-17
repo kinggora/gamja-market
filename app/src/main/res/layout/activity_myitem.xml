@@ -9,9 +9,33 @@
         android:id="@+id/myitem_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" >
+        android:background="#ffffff"
+        android:layout_marginBottom="5dp"
+        android:elevation="10dp"
+        android:theme="?attr/actionBarTheme"
+        android:contentInsetStart="0dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetEnd="0dp"
+        android:contentInsetRight="0dp"
+        android:minHeight="?attr/actionBarSize" >
+
+        <Button
+            android:id="@+id/myitem_backbutton"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/arrow" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_cj_kkr_bold"
+            android:includeFontPadding="false"
+            android:text="내 상품"
+            android:textColor="#191919"
+            android:textSize="20sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -22,18 +46,52 @@
 
         <Button
             android:id="@+id/btn_onSalePost"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="거래중인 상품" />
+            android:background="@color/white"
+            android:fontFamily="@font/noto_sans_cj_kkr_bold"
+            android:includeFontPadding="false"
+            android:text="거래중인 상품"
+            android:textColor="#191919"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/btn_completedPost"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="거래 완료된 상품" />
+            android:background="@color/white"
+            android:fontFamily="@font/noto_sans_cj_kkr_bold"
+            android:includeFontPadding="false"
+            android:text="거래 완료된 상품"
+            android:textColor="#767676"
+            android:textSize="16sp" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/myitem_selectspace1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#af876d"
+            android:layout_weight="1">
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/myitem_selectspace2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:layout_weight="1">
+
+        </FrameLayout>
     </LinearLayout>
 
     <FrameLayout

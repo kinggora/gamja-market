@@ -35,7 +35,7 @@
             android:layout_height="30dp"
             android:layout_margin="15dp"
             android:layout_alignParentRight="true"
-            android:src="@drawable/setting"/>
+            android:src="@drawable/setting_gray"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_below="@+id/infoFragment_relativeLaout1"
@@ -52,7 +52,7 @@
                 android:layout_margin="10dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/present"/>
+                android:src="@drawable/present_gray"/>
             <TextView
                 android:layout_gravity="center"
                 android:backgroundTint="@color/white"
@@ -71,7 +71,7 @@
                 android:layout_margin="10dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/heart"/>
+                android:src="@drawable/heart_gray"/>
             <TextView
                 android:layout_gravity="center"
                 android:backgroundTint="@color/white"
@@ -90,7 +90,7 @@
                 android:layout_margin="10dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/review"/>
+                android:src="@drawable/review_gray"/>
             <TextView
                 android:layout_gravity="center"
                 android:backgroundTint="@color/white"
@@ -109,7 +109,7 @@
                 android:layout_margin="10dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/location"/>
+                android:src="@drawable/location_gray"/>
             <TextView
                 android:layout_gravity="center"
                 android:backgroundTint="@color/white"

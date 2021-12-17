@@ -8,35 +8,64 @@
 
     <TextView
         android:id="@+id/textView5"
+        style="@style/TextStyle"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:text="마음을 주고받는\n감자마켓"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView15"
+        style="@style/TextStyle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="시작 텍스트"
-        app:layout_constraintBottom_toTopOf="@+id/btn_registerGo"
+        android:layout_marginTop="170dp"
+        android:text="서로에게 필요한 물건을 교환하고\n다른사람에게 큰 힘이 되는 물건을 나눠봐요"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_loginGo"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
-        android:text="로그인"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.875" />
+        app:layout_constraintVertical_bias="0.574"
+        app:srcCompat="@drawable/gamja_start" />
 
     <Button
         android:id="@+id/btn_registerGo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/TextStyle3"
+        android:layout_width="327dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/brown_round_button"
         android:text="회원가입"
         app:layout_constraintBottom_toTopOf="@+id/btn_loginGo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.97" />
+        app:layout_constraintVertical_bias="0.981" />
+
+    <Button
+        android:id="@+id/btn_loginGo"
+        style="@style/TextStyle4"
+        android:layout_width="327dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="74dp"
+        android:background="@drawable/white_round_button"
+        android:text="로그인"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

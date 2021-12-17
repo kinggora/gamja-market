@@ -23,7 +23,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.firestore.Transaction;
 
@@ -171,10 +170,10 @@ public class PostviewActivity2 extends FragmentActivity {
 
     public void setLikeUI(){
         if(like){
-            heartImage.setImageResource(R.drawable.fillheart);
+            heartImage.setImageResource(R.drawable.heart);
         }
         else{
-            heartImage.setImageResource(R.drawable.emptyheart);
+            heartImage.setImageResource(R.drawable.heart_line);
         }
     }
 

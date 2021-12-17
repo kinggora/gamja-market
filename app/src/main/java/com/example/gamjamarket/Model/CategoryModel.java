@@ -5,12 +5,14 @@ import java.io.Serializable;
 public class CategoryModel implements Serializable {
     private String id;
     private String name;
+    private String icon;
 
     public CategoryModel(){}
 
-    public CategoryModel(String mid, String str){
-        id = mid;
-        name = str;
+    public CategoryModel(String id, String name, String icon){
+        this.id = id;
+        this.name = name;
+        this.icon = icon;
     }
 
     public String getId(){
@@ -20,6 +22,11 @@ public class CategoryModel implements Serializable {
     public String getName(){
         return name;
     }
+
+    public String getIcon(){
+        return icon;
+    }
+
 
 
 }

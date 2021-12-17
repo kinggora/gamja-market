@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -42,6 +43,7 @@ public class MyItemFragment extends Fragment {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private String uid = mAuth.getCurrentUser().getUid();
 
+    private ImageView imgview;
     private RecyclerView myitemListView;
     private MyItemAdapter postAdapter;
     private ArrayList<PostlistItem> postList = new ArrayList<PostlistItem>();
@@ -54,7 +56,7 @@ public class MyItemFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_recyclerview, container, false);
 
         myitemListView = (RecyclerView) view.findViewById(R.id.recycler_view);
-
+        imgview = (ImageView)view.findViewById(R.id.recycler_imageview);
         LinearLayoutManager verticalLayoutManager
                 = new LinearLayoutManager(inflater.getContext(), LinearLayoutManager.VERTICAL, false);
         myitemListView.setLayoutManager(verticalLayoutManager);
@@ -80,6 +82,7 @@ public class MyItemFragment extends Fragment {
                                 Log.w(TAG, "Listen failed.", e);
                                 return;
                             }
+
                             for (QueryDocumentSnapshot doc : value) {
                                 String title = doc.getString("title");
                                 String contents = doc.getString("contents");
@@ -96,6 +99,12 @@ public class MyItemFragment extends Fragment {
                                         if(nickname != null){
                                             PostlistItem item = new PostlistItem(pid, title, contents, type, wuid, nickname, createdAt, likes);
                                             postList.add(item);
+                                            if(ONSALE && postList.isEmpty()){
+                                                imgview.setVisibility(View.VISIBLE);
+                                                imgview.setImageResource(R.drawable.noitem);
+                                            }else {
+                                                imgview.setVisibility(View.INVISIBLE);
+                                            }
                                             postAdapter.notifyDataSetChanged();
                                         }
                                     }

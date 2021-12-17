@@ -51,9 +51,9 @@ public class MyItemDialog {
 
             WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
             params.width = deviceSize.x;
-            params.height = (int)(deviceSize.y * 0.2);
+            params.height = (int)(deviceSize.y * 0.25);
             params.horizontalMargin = 0.0f;
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.getWindow().setGravity(Gravity.BOTTOM);
             dialog.getWindow().setAttributes(params);
         } catch (Exception e) {
@@ -135,6 +135,7 @@ public class MyItemDialog {
             public void onSuccess(Void aVoid) {
                 Toast.makeText(context, "거래완료로 상태가 변경되었습니다",
                         Toast.LENGTH_SHORT).show();
+                //((MyItemActivity)context).get
                 dialog.dismiss();
                 SelectUserDialog newDialog = new SelectUserDialog(context, item);
                 newDialog.callDialog();

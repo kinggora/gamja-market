@@ -1,12 +1,17 @@
 package com.example.gamjamarket.Setting;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +40,7 @@ public class LikesListFragment2 extends Fragment {
     private String uid = mAuth.getCurrentUser().getUid();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    private ImageView imgview;
     private LikesList2Adapter postAdapter;
     private RecyclerView likesListView;
     private ArrayList<PostlistItem> postList = new ArrayList<PostlistItem>();
@@ -42,6 +48,7 @@ public class LikesListFragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recyclerview, container, false);
 
+        imgview = (ImageView) view.findViewById(R.id.recycler_imageview);
         likesListView = (RecyclerView) view.findViewById(R.id.recycler_view);
 
         LinearLayoutManager verticalLayoutManager
@@ -63,6 +70,12 @@ public class LikesListFragment2 extends Fragment {
                     if (document.exists()) {
                         if(document.get("board2")!=null){
                             List<String> board2 = (List<String>)document.get("board2");
+                            if(board2.size()!=0){
+                                imgview.setVisibility(View.INVISIBLE);
+                            }else{
+                                imgview.setVisibility(View.VISIBLE);
+                                imgview.setImageResource(R.drawable.nolike);
+                            }
                             for(String mpid: board2) {
                                 db.collection("board2").document(mpid)
                                         .addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -95,9 +108,14 @@ public class LikesListFragment2 extends Fragment {
                         }
                         else{
                             Log.d(TAG, "해당 게시판에는 찜한 게시글이 없음", task.getException());
+                            imgview.setVisibility(View.VISIBLE);
+                            imgview.setImageResource(R.drawable.nolike);
+
                         }
                     } else {
                         Log.d(TAG, "찜목록 생성 안됨. 찜을 한 기록이 없음.", task.getException());
+                        imgview.setVisibility(View.VISIBLE);
+                        imgview.setImageResource(R.drawable.nolike);
                     }
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());

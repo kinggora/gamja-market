@@ -1,50 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app2="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="5dp"
+    android:background="#FFFFFF"
     android:orientation="vertical">
 
+
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/searchresult_toolbar"
+        android:id="@+id/category_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme">
+        android:layout_marginBottom="5dp"
+        android:elevation="10dp"
+        android:background="#ffffff"
+        android:contentInsetStart="0dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetEnd="0dp"
+        android:contentInsetRight="0dp"
+        android:minHeight="?attr/actionBarSize">
 
-        <LinearLayout
+        <Button
+            android:id="@+id/category_backbutton"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/arrow" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginRight="20dp"
-            android:background="#E8E8E8"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/searchresult_searchedit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:id="@+id/category_searchedit"
+                android:layout_width="320dp"
+                android:layout_height="40dp"
+                android:background="@drawable/gray_round_edit"
+                android:ems="10"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
-                android:layout_weight="1" />
+                android:paddingLeft="15dp"
+                app2:layout_constraintBottom_toBottomOf="parent"
+                app2:layout_constraintEnd_toEndOf="parent"
+                app2:layout_constraintStart_toStartOf="parent"
+                app2:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHorizontal_bias="0.313"
+                app:layout_constraintVertical_bias="0.0" />
 
-            <ImageButton
-                android:id="@+id/searchresult_searchbutton"
-                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="20dp"
-                android:background="#00FFFFFF"
-                android:padding="5dp"
-                app:srcCompat="@drawable/ic_search_black_24dp" />
+            <Button
+                android:id="@+id/category_searchbutton"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:background="@drawable/search_gray"
+                app:layout_constraintBottom_toBottomOf="@+id/category_searchedit"
+                app:layout_constraintEnd_toEndOf="@+id/category_searchedit"
+                app:layout_constraintHorizontal_bias="0.96"
+                app:layout_constraintStart_toStartOf="@+id/category_searchedit"
+                app:layout_constraintTop_toTopOf="@+id/category_searchedit" />
 
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        style="@style/TextStyle4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:text="카테고리" />
 
     <GridView
         android:id="@+id/category_gridview"
@@ -53,5 +82,8 @@
         android:layout_margin="10dp"
         android:horizontalSpacing="10dp"
         android:numColumns="4"
-        android:verticalSpacing="10dp" />
+        android:verticalSpacing="10dp">
+
+    </GridView>
+
 </LinearLayout>

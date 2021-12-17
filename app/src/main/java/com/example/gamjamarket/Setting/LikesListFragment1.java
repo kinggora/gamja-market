@@ -1,12 +1,18 @@
 package com.example.gamjamarket.Setting;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,13 +44,14 @@ public class LikesListFragment1 extends Fragment {
 
     private RecyclerView likesListView;
     private HomePostAdapter postAdapter;
+    private ImageView imgview;
     private ArrayList<PostlistItem> postList = new ArrayList<PostlistItem>();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recyclerview, container, false);
 
         likesListView = (RecyclerView) view.findViewById(R.id.recycler_view);
-
+        imgview = (ImageView) view.findViewById(R.id.recycler_imageview);
         LinearLayoutManager verticalLayoutManager
                 = new LinearLayoutManager(inflater.getContext(), LinearLayoutManager.VERTICAL, false);
         likesListView.setLayoutManager(verticalLayoutManager);
@@ -56,6 +63,7 @@ public class LikesListFragment1 extends Fragment {
 
     public void getPostSet() {
         System.out.println("data setting1");
+        postList.clear();
         DocumentReference myHeartDoc = db.collection("likes").document(uid);
         myHeartDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -65,13 +73,18 @@ public class LikesListFragment1 extends Fragment {
                     if (document.exists()) {
                         if(document.get("board1")!=null){
                             List<String> board1 = (List<String>)document.get("board1");
+                            if(board1.size()!=0){
+                                imgview.setVisibility(View.INVISIBLE);
+                            }else{
+                                imgview.setVisibility(View.VISIBLE);
+                                imgview.setImageResource(R.drawable.nolike);
+                            }
                             for(String mpid: board1) {
                                 db.collection("board1").document(mpid)
                                         .addSnapshotListener(new EventListener<DocumentSnapshot>() {
                                             @Override
                                             public void onEvent(DocumentSnapshot ds, FirebaseFirestoreException error) {
                                                 //postList.clear();
-
                                                 if (error != null) {
                                                     Log.e("Firestore error", error.getMessage());
                                                     return;
@@ -98,9 +111,13 @@ public class LikesListFragment1 extends Fragment {
                         }
                         else{
                             Log.d(TAG, "해당 게시판에는 찜한 게시글이 없음", task.getException());
+                            imgview.setVisibility(View.VISIBLE);
+                            imgview.setImageResource(R.drawable.nolike);
                         }
                     } else {
                         Log.d(TAG, "찜목록 생성 안됨. 찜을 한 기록이 없음.", task.getException());
+                        imgview.setVisibility(View.VISIBLE);
+                        imgview.setImageResource(R.drawable.nolike);
                     }
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());

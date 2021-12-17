@@ -3,6 +3,7 @@ package com.example.gamjamarket.Setting;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Layout;
@@ -21,6 +22,8 @@ import com.example.gamjamarket.Model.PostlistItem;
 import com.example.gamjamarket.Model.UserModel;
 import com.example.gamjamarket.R;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class UseritemAdapter extends RecyclerView.Adapter<UseritemAdapter.ViewHolder>{
@@ -30,6 +33,7 @@ public class UseritemAdapter extends RecyclerView.Adapter<UseritemAdapter.ViewHo
     private Context context;
     private static SelectUserDialog dialog;
     private static View mLayout;
+    private static TextView mNicknameView;
 
     public UseritemAdapter(ArrayList mArraylist, Context context, SelectUserDialog dialog){
         userList = (ArrayList<UserModel>)mArraylist;
@@ -51,10 +55,13 @@ public class UseritemAdapter extends RecyclerView.Adapter<UseritemAdapter.ViewHo
                     getAdapterPosition();
                     itemLayout = v.findViewById(R.id.item_userlayout);
                     if(mLayout != null){
-                        mLayout.setBackgroundColor(Color.WHITE);
+                        mLayout.setBackgroundColor(Color.parseColor("#ffffff"));
+                        mNicknameView.setTextColor(Color.parseColor("#191919"));
                     }
-                    itemLayout.setBackgroundColor(Color.YELLOW);
+                    itemLayout.setBackgroundColor(Color.parseColor("#af876d"));
+                    itemNickname.setTextColor(Color.parseColor("#ffffff"));
                     mLayout = itemLayout;
+                    mNicknameView = itemNickname;
 
                     dialog.selectedPosition(getAdapterPosition());
                 }

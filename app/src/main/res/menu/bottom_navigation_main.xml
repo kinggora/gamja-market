@@ -8,12 +8,12 @@
         />
     <item
         android:id="@+id/action_home2"
-        android:icon="@drawable/heart"
+        android:icon="@drawable/donate"
         android:title="홈2"
         />
     <item
         android:id="@+id/action_write"
-        android:icon="@drawable/write"
+        android:icon="@drawable/plus"
         android:title="글쓰기"
         />
     <item
@@ -23,7 +23,7 @@
         />
     <item
         android:id="@+id/action_info"
-        android:icon="@drawable/user"
+        android:icon="@drawable/person"
         android:title="내 정보"
         />
 </menu>

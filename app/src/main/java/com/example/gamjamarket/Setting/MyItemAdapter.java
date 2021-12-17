@@ -2,6 +2,7 @@ package com.example.gamjamarket.Setting;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -103,6 +104,10 @@ public class MyItemAdapter extends RecyclerView.Adapter<com.example.gamjamarket.
         Glide.with(context)
                 .load(postList.get(position).getContents())
                 .into(viewHolder.itemImage);
+        GradientDrawable roundCorner=
+                (GradientDrawable) context.getDrawable(R.drawable.post_round_image);
+        viewHolder.itemImage.setBackground(roundCorner);
+        viewHolder.itemImage.setClipToOutline(true);
         viewHolder.itemTitle.setText(postList.get(position).getTitle());
         viewHolder.itemType.setText(postList.get(position).getType());
         viewHolder.itemNickname.setText(postList.get(position).getNickname());

@@ -169,9 +169,9 @@ public class ModifyPostActivity extends AppCompatActivity {
     public void _updateDB(String pid, String contents){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("board1").document(pid).update(
-                "title", titleEdit.getText(),
-                "category", categoryBtn.getText(),
-                "explain", explainEdit.getText(),
+                "title", titleEdit.getText().toString(),
+                "category", categoryBtn.getText().toString(),
+                "explain", explainEdit.getText().toString(),
                 "type", getType(),
                 "contents", contents
         ).addOnSuccessListener(new OnSuccessListener<Void>() {

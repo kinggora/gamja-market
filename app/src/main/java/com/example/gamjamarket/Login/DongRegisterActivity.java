@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -40,6 +43,7 @@ public class DongRegisterActivity extends Activity {
     private EditText editDong;
     private Button btnSearch;
     private ListView donglistView;
+    private ImageView img;
 
     private AdresSpceAPI mAdresApceAPI = new AdresSpceAPI();;
     private ArrayAdapter adapter;
@@ -53,6 +57,9 @@ public class DongRegisterActivity extends Activity {
         editDong = (EditText)findViewById(R.id.dongInput);
         btnSearch = (Button)findViewById(R.id.btn_searchDong);
         donglistView = (ListView)findViewById(R.id.dongList);
+        img = (ImageView) findViewById(R.id.dongne_img);
+        Drawable imgsrc = img.getDrawable();
+        imgsrc.setAlpha(255);
 
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, items);
         donglistView.setAdapter(adapter);
@@ -67,6 +74,7 @@ public class DongRegisterActivity extends Activity {
                 if(input.length() != 0){
                     items.clear();
                     items.addAll(mAdresApceAPI.search(input));
+                    imgsrc.setAlpha(50);
 
                     runOnUiThread(new Runnable() {
                         @Override
@@ -134,6 +142,7 @@ public class DongRegisterActivity extends Activity {
             public void onComplete(@NonNull Task<Void> task) {
                 Intent mainActivity = new Intent(DongRegisterActivity.this, MainActivity.class);
                 startActivity(mainActivity);
+                finish();
             }
         });
     }

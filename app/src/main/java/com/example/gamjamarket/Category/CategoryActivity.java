@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -36,7 +37,6 @@ public class CategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
-        InitializationToolbar();
 
         GridView categoryGridview = (GridView)findViewById(R.id.category_gridview);
         adapter = new CategoryGridviewAdapter(categoryList, this);
@@ -45,8 +45,16 @@ public class CategoryActivity extends AppCompatActivity {
         CATEGORY = getIntent().getStringExtra("category");
         getCategorySet();
 
-        EditText searchEdit = (EditText)findViewById(R.id.searchresult_searchedit);
-        ImageButton searchButton = (ImageButton)findViewById(R.id.searchresult_searchbutton);
+        Button backButton = (Button)findViewById(R.id.category_backbutton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        EditText searchEdit = (EditText)findViewById(R.id.category_searchedit);
+        Button searchButton = (Button)findViewById(R.id.category_searchbutton);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +93,8 @@ public class CategoryActivity extends AppCompatActivity {
                             for (DocumentChange dc : value.getDocumentChanges()) {
                                 if (dc.getType() == DocumentChange.Type.ADDED) {
                                     DocumentSnapshot document = dc.getDocument();
-                                    CategoryModel model = new CategoryModel(document.getId(), document.getString("name"));
+                                    //CategoryModel model = new CategoryModel(document.getId(), document.getString("name"));
+                                    CategoryModel model = document.toObject(CategoryModel.class);
                                     categoryList.add(model);
                                 }
                                 adapter.notifyDataSetChanged();
@@ -104,19 +113,6 @@ public class CategoryActivity extends AppCompatActivity {
             return new Intent(this, PostInCategory2Activity.class);
         }
         return null;
-    }
-
-    public void InitializationToolbar(){
-        Toolbar tb = (Toolbar)findViewById(R.id.searchresult_toolbar);
-        setSupportActionBar(tb);
-
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("");
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
-        actionBar.show();
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

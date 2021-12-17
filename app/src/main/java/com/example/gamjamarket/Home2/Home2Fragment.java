@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -65,7 +66,7 @@ public class Home2Fragment extends Fragment {
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+        InitializationToolbar();
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -87,11 +88,7 @@ public class Home2Fragment extends Fragment {
 
         getCategorySet();
 
-        FragmentActivity activity = getActivity();
-        if (activity != null) {
-            ((MainActivity) activity).setActionBarTitle("기부해요");
-            ((MainActivity) activity).findViewById(R.id.main_toolbar_image).setVisibility(View.INVISIBLE);
-        }
+
         return view;
     }
 
@@ -107,11 +104,12 @@ public class Home2Fragment extends Fragment {
                         for (DocumentChange dc : value.getDocumentChanges()) {
                             if (dc.getType() == DocumentChange.Type.ADDED) {
                                 DocumentSnapshot document = dc.getDocument();
-                                CategoryModel model = new CategoryModel(document.getId(), document.getString("name"));
+                                CategoryModel model = new CategoryModel(document.getId(), document.getString("name"), document.getString("icon"));
                                 categoryList.add(model);
                             }
                         }
-                        categoryList.add(new CategoryModel("more", "더보기"));
+                        categoryList.add(new CategoryModel("more", "더보기",
+                                "https://firebasestorage.googleapis.com/v0/b/gamjamarket-1b94d.appspot.com/o/category_icon%2Fc1-18.png?alt=media&token=c333549d-093c-4241-b49a-233f043f0f45"));
                         categoryAdapter.notifyDataSetChanged();
                     }
                 });
@@ -143,7 +141,7 @@ public class Home2Fragment extends Fragment {
                                         }
                                         postAdapter.notifyDataSetChanged();
                                     }
-                                }
+                               }
                             });
 
     }
@@ -160,20 +158,34 @@ public class Home2Fragment extends Fragment {
         getPostSet();
     }
 
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()) {
-            case R.id.action_search :
-                Intent categoryActivity = new Intent(getContext(), CategoryActivity.class);
-                categoryActivity.putExtra("category", CATEGORY);
-                getContext().startActivity(categoryActivity);
-                return true;
-            case R.id.action_like :
-                Intent likeslistActivity = new Intent(getContext(), LikesListActivity.class);
-                getContext().startActivity(likeslistActivity);
-                return true;
+    public void InitializationToolbar(){
+        FragmentActivity activity = getActivity();
+        if (activity != null) {
+            ((MainActivity) activity).setActionBarTitle("기부해요");
+            ((MainActivity) activity).findViewById(R.id.main_toolbar_image).setVisibility(View.INVISIBLE);
 
+            Button toolSearchBtn = ((MainActivity) activity).findViewById(R.id.main_search_button);
+            toolSearchBtn.setVisibility(View.VISIBLE);
+            toolSearchBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent categoryActivity = new Intent(getContext(), CategoryActivity.class);
+                    categoryActivity.putExtra("category", CATEGORY);
+                    getContext().startActivity(categoryActivity);
+                }
+            });
+
+            Button toolLikeBtn = ((MainActivity) activity).findViewById(R.id.main_like_button);
+            toolLikeBtn.setVisibility(View.VISIBLE);
+            toolLikeBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent likeslistActivity = new Intent(getContext(), LikesListActivity.class);
+                    getContext().startActivity(likeslistActivity);
+                }
+            });
         }
-        return false;
-    }
 
+
+    }
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -66,9 +67,9 @@ public class SelectUserDialog {
 
             WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
             params.width = deviceSize.x;
-            params.height = (int)(deviceSize.y * 0.8);
+            params.height = (int)(deviceSize.y * 0.9);
             params.horizontalMargin = 0.0f;
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.getWindow().setGravity(Gravity.BOTTOM);
             dialog.getWindow().setAttributes(params);
         } catch (Exception e) {
@@ -84,9 +85,8 @@ public class SelectUserDialog {
             @Override
             public void onClick(View v) {
                 if(selected){
-                    ReviewWritingDialog newDialog = new ReviewWritingDialog(context, userList.get(selectedPosition));
+                    ReviewWritingDialog newDialog = new ReviewWritingDialog(context, userList.get(selectedPosition), dialog);
                     newDialog.callDialog();
-                    dialog.dismiss();
                 }
                 else{
                     Toast.makeText(context, "거래자를 선택하세요",
@@ -95,7 +95,7 @@ public class SelectUserDialog {
             }
         });
 
-        ImageView exitImage = ((Dialog) dialog).findViewById(R.id.selectuser_exit);
+        Button exitImage = ((Dialog) dialog).findViewById(R.id.selectuser_exit);
         exitImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +107,10 @@ public class SelectUserDialog {
         Glide.with(context)
                 .load(postItem.getContents())
                 .into(goodsImage);
+        GradientDrawable roundCorner=
+                (GradientDrawable) context.getDrawable(R.drawable.post_round_image);
+        goodsImage.setBackground(roundCorner);
+        goodsImage.setClipToOutline(true);
         TextView goodsTitle = ((Dialog) dialog).findViewById(R.id.selectuser_usernickname);
         goodsTitle.setText(postItem.getTitle());
 

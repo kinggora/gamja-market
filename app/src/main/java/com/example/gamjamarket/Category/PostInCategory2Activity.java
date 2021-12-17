@@ -3,6 +3,8 @@ package com.example.gamjamarket.Category;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.gamjamarket.Home1.HomePostAdapter;
 import com.example.gamjamarket.Home2.Home2PostAdapter;
 import com.example.gamjamarket.Model.CategoryModel;
@@ -58,6 +61,9 @@ public class PostInCategory2Activity extends Activity {
         name = (TextView)findViewById(R.id.postincate_textview);
         image = (ImageView)findViewById(R.id.postincate_imageview);
         name.setText(category.getName());
+        Glide.with(this)
+                .load(category.getIcon())
+                .into(image);
 
         RecyclerView postListView = (RecyclerView)findViewById(R.id.postincate_postlist);
         LinearLayoutManager verticalLayoutManager
@@ -65,6 +71,14 @@ public class PostInCategory2Activity extends Activity {
         postListView.setLayoutManager(verticalLayoutManager);
         postAdapter = new Home2PostAdapter(postList, this);
         postListView.setAdapter(postAdapter);
+
+        Button backBtn = (Button)findViewById(R.id.categorypost_backbutton);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         getPostSet();
     }

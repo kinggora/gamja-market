@@ -3,64 +3,99 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="440dp"
     android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/home2_textview_nickname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:text="단체명" />
-
-    <TextView
-        android:id="@+id/home2_textview_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:gravity="center"
-        android:text="글 제목" />
-
-    <ImageView
-        android:id="@+id/home2_imageview"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:scaleType="centerCrop"
-        tools:srcCompat="@tools:sample/avatars" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/postview2_button1"
+        android:elevation="5dp"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/home2_planBtn"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/home2_textview_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/noto_sans_cj_kkr_regular"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="단체명"
+            android:textColor="#767676"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/home2_textview_title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:text="기부 사용 계획" />
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/noto_sans_cj_kkr_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="글 제목"
+            android:textColor="#191919"
+            android:textSize="16sp" />
 
-        <Button
-            android:id="@+id/home2_btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/home2_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:text="기부하기" />
+            android:layout_marginBottom="20dp"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/home2_planBtn"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/postview2_button1"
+                android:elevation="10dp"
+                android:fontFamily="@font/noto_sans_cj_kkr_medium"
+                android:includeFontPadding="false"
+                android:text="기부 사용 계획"
+                android:textColor="#191919"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/home2_btn"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/postview2_button2"
+                android:elevation="10dp"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/noto_sans_cj_kkr_medium"
+                android:text="기부하기"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

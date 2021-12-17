@@ -167,7 +167,7 @@ public class ChatFragment extends Fragment {
             long unixTime = (long) chatModels.get(position).comments.get(lastMessageKey).timestamp;
             Date date = new Date(unixTime);
             customViewHolder.textView_timestamp.setText(simpleDateFormat.format(date));
-            customViewHolder.unreadMessage.setText(unreadCount);
+            //customViewHolder.unreadMessage.setText(unreadCount);
             Glide.with(getContext())
                     .load(productImage)
                     .into(customViewHolder.imageView_product);

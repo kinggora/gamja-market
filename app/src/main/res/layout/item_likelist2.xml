@@ -3,61 +3,84 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="150dp">
+    android:layout_height="150dp"
+    android:background="#FFFFFF">
 
     <ImageView
         android:id="@+id/likelist_image"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginRight="10dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center"
         android:layout_marginRight="20dp"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/likelist_title"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="1"
+            android:fontFamily="@font/noto_sans_cj_kkr_regular"
             android:gravity="center_vertical"
-            android:text="제목" />
+            android:includeFontPadding="false"
+            android:text="제목"
+            android:textColor="#191919"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/likelist_nickname"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="단체명" />
+            android:fontFamily="@font/noto_sans_cj_kkr_regular"
+            android:includeFontPadding="false"
+            android:text="단체명"
+            android:textColor="#767676"
+            android:textSize="12sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.5"
+            android:gravity="bottom"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/likelist_btn1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="기부 사용 계획" />
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/postview2_button1"
+                android:fontFamily="@font/noto_sans_cj_kkr_medium"
+                android:includeFontPadding="false"
+                android:text="기부 사용 계획"
+                android:textColor="#191919"
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/likelist_btn2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="기부하기" />
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/postview2_button2"
+                android:fontFamily="@font/noto_sans_cj_kkr_medium"
+                android:includeFontPadding="false"
+                android:text="기부하기"
+                android:textColor="#ffffff"
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

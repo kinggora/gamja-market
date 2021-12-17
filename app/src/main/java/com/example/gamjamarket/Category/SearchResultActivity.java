@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -46,19 +47,26 @@ public class SearchResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchresult);
-        InitializationToolbar();
         
         final String BOARD = getIntent().getStringExtra("board");
         final String search_word = getIntent().getStringExtra("word");
 
         EditText searchEdit = (EditText)findViewById(R.id.searchresult_searchedit);
         searchEdit.setText(search_word);
-        ImageButton searchButton = (ImageButton)findViewById(R.id.searchresult_searchbutton);
+        Button searchButton = (Button)findViewById(R.id.searchresult_searchbutton);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String newWord = searchEdit.getText().toString();
                 getPostSet(BOARD, newWord);
+            }
+        });
+
+        Button backButton = (Button)findViewById(R.id.searchresult_backbutton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
@@ -133,24 +141,5 @@ public class SearchResultActivity extends AppCompatActivity {
                 });
     }
 
-    public void InitializationToolbar(){
-        Toolbar tb = (Toolbar)findViewById(R.id.searchresult_toolbar);
-        setSupportActionBar(tb);
-
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("");
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
-        actionBar.show();
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
 }

@@ -9,9 +9,33 @@
         android:id="@+id/likelist_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" >
+        android:background="#ffffff"
+        android:layout_marginBottom="5dp"
+        android:elevation="10dp"
+        android:theme="?attr/actionBarTheme"
+        android:contentInsetStart="0dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetEnd="0dp"
+        android:contentInsetRight="0dp"
+        android:minHeight="?attr/actionBarSize">
+
+        <Button
+            android:id="@+id/likelist_backbutton"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/arrow" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_cj_kkr_bold"
+            android:includeFontPadding="false"
+            android:text="찜 목록"
+            android:textColor="#191919"
+            android:textSize="20sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -24,6 +48,11 @@
             android:id="@+id/btn_likes1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:fontFamily="@font/noto_sans_cj_kkr_bold"
+            android:textColor="#191919"
+            android:textSize="16sp"
+            android:includeFontPadding="false"
             android:layout_weight="1"
             android:text="물물교환" />
 
@@ -31,16 +60,45 @@
             android:id="@+id/btn_likes2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:fontFamily="@font/noto_sans_cj_kkr_bold"
+            android:textColor="#767676"
+            android:textSize="16sp"
+            android:includeFontPadding="false"
             android:layout_weight="1"
             android:text="기부" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/likelist_selectspace1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#af876d"
+            android:layout_weight="1">
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/likelist_selectspace2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        </FrameLayout>
     </LinearLayout>
 
     <FrameLayout
         android:id="@+id/likeslist_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="#FFFFFF">
 
     </FrameLayout>
 

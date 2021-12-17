@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -64,7 +65,6 @@ public class HomeFragment extends Fragment {
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
 
     }
 
@@ -102,11 +102,11 @@ public class HomeFragment extends Fragment {
                         for (DocumentChange dc : value.getDocumentChanges()) {
                             if (dc.getType() == DocumentChange.Type.ADDED) {
                                 DocumentSnapshot document = dc.getDocument();
-                                CategoryModel model = new CategoryModel(document.getId(), document.getString("name"));
+                                CategoryModel model = new CategoryModel(document.getId(), document.getString("name"), document.getString("icon"));
                                 categoryList.add(model);
                             }
                         }
-                        categoryList.add(new CategoryModel("more", "더보기"));
+                        categoryList.add(new CategoryModel("more", "더보기", "https://firebasestorage.googleapis.com/v0/b/gamjamarket-1b94d.appspot.com/o/category_icon%2Fc1-18.png?alt=media&token=c333549d-093c-4241-b49a-233f043f0f45"));
                         categoryAdapter.notifyDataSetChanged();
                     }
                 });
@@ -189,34 +189,38 @@ public class HomeFragment extends Fragment {
 
     }
 
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()) {
-            case R.id.action_search :
-                Intent categoryActivity = new Intent(getContext(), CategoryActivity.class);
-                categoryActivity.putExtra("category", CATEGORY);
-                getContext().startActivity(categoryActivity);
-                return true;
-            case R.id.action_like :
-                Intent likeslistActivity = new Intent(getContext(), LikesListActivity.class);
-                getContext().startActivity(likeslistActivity);
-                return true;
-
-        }
-        return false;
-    }
-
     public void setActionbarTitle(String dongname){
         String[] strings = dongname.split(" ");
-        TextView titleView;
         FragmentActivity activity = getActivity();
         if (activity != null) {
-            titleView = (TextView)((MainActivity) activity).setActionBarTitle(strings[strings.length-1]);
+            TextView titleView = (TextView)((MainActivity) activity).setActionBarTitle(strings[strings.length-1]);
             ((MainActivity) activity).findViewById(R.id.main_toolbar_image).setVisibility(View.VISIBLE);
             titleView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent dongRegisterActivity = new Intent(getContext(), DongRegisterActivity.class);
                     getContext().startActivity(dongRegisterActivity);
+                }
+            });
+
+            Button toolSearchBtn = ((MainActivity) activity).findViewById(R.id.main_search_button);
+            toolSearchBtn.setVisibility(View.VISIBLE);
+            toolSearchBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent categoryActivity = new Intent(getContext(), CategoryActivity.class);
+                    categoryActivity.putExtra("category", CATEGORY);
+                    getContext().startActivity(categoryActivity);
+                }
+            });
+
+            Button toolLikeBtn = ((MainActivity) activity).findViewById(R.id.main_like_button);
+            toolLikeBtn.setVisibility(View.VISIBLE);
+            toolLikeBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent likeslistActivity = new Intent(getContext(), LikesListActivity.class);
+                    getContext().startActivity(likeslistActivity);
                 }
             });
         }

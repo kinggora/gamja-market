@@ -43,10 +43,12 @@ public class ReviewWritingDialog {
     private Dialog dialog;
     private Context context;
     private UserModel userModel;
+    private Dialog mdialog;
 
-    public ReviewWritingDialog(Context context, UserModel model){
+    public ReviewWritingDialog(Context context, UserModel model, Dialog dialog){
         this.context = context;
         this.userModel = model;
+        this.mdialog = dialog;
     }
 
     public void callDialog() {
@@ -63,9 +65,9 @@ public class ReviewWritingDialog {
 
             WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
             params.width = deviceSize.x;
-            params.height = (int)(deviceSize.y * 0.8);
+            params.height = (int)(deviceSize.y * 0.9);
             params.horizontalMargin = 0.0f;
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.getWindow().setGravity(Gravity.BOTTOM);
             dialog.getWindow().setAttributes(params);
         } catch (Exception e) {
@@ -127,6 +129,7 @@ public class ReviewWritingDialog {
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        mdialog.dismiss();
                         successDialog.dismiss();
                         dialog.dismiss();
                     }

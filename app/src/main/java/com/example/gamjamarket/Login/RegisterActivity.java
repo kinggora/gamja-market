@@ -198,9 +198,15 @@ public class RegisterActivity extends Activity {
                                         public void onSuccess(Void aVoid) {
                                             userModel.setNickname(editNickname.getText().toString());
                                             userModel.setUid(FirebaseAuth.getInstance().getCurrentUser().getUid());
-                                            FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(userModel);
-                                            Intent loginIntent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                            startActivity(loginIntent);
+                                            FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(userModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    Intent registeredIntent = new Intent(RegisterActivity.this, RegisteredActivity.class);
+                                                    startActivity(registeredIntent);
+                                                    finish();
+                                                }
+                                            });
+
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {

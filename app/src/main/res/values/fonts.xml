@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextStyle">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/noto_sans_cj_kkr</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+        <item name="android:textColor">#191919</item>
+    </style>
+    <style name="TextStyle4">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/noto_sans_cj_kkr</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:letterSpacing">-0.05</item>
+        <item name="android:lineSpacingExtra">22sp</item>
+        <item name="android:textColor">#191919</item>
+    </style>
+    <style name="TextStyle3">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/noto_sans_cj_kkr</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:letterSpacing">-0.05</item>
+        <item name="android:lineSpacingExtra">22sp</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+    <style name="TextStyle2">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/noto_sans_cj_kkr</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:textColor">#767676</item>
+    </style>
+</resources>

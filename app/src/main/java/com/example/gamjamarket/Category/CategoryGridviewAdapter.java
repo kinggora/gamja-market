@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.gamjamarket.Model.CategoryModel;
 import com.example.gamjamarket.R;
 
@@ -43,6 +44,9 @@ public class CategoryGridviewAdapter extends BaseAdapter {
         View v = LayoutInflater.from(context).inflate(R.layout.item_category, null);
         ImageView image = v.findViewById(R.id.categoryitem_imageview);
         TextView name = v.findViewById(R.id.categoryitem_textview);
+        Glide.with(context)
+                .load(categoryList.get(position).getIcon())
+                .into(image);
         name.setText(categoryList.get(position).getName());
 
         v.setOnClickListener(new View.OnClickListener() {

@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import com.example.gamjamarket.Category.CategoryActivity;
 import com.example.gamjamarket.Chat.MessageActivity;
 import com.example.gamjamarket.Login.DongRegisterActivity;
 import com.example.gamjamarket.MainActivity;
@@ -38,12 +39,7 @@ public class InfoFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //툴바 설정
-        FragmentActivity activity = getActivity();
-        if (activity != null) {
-            ((MainActivity) activity).setActionBarTitle("내 정보");
-            //((MainActivity) activity).findViewById(R.id.main_toolbar_image).setVisibility(View.INVISIBLE);
-        }
+        InitializationToolbar();
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -126,6 +122,16 @@ public class InfoFragment extends Fragment {
         String uid = mAuth.getCurrentUser().getUid();
         setUI(uid);
 
+    }
+
+    public void InitializationToolbar(){
+        FragmentActivity activity = getActivity();
+        if (activity != null) {
+            ((MainActivity) activity).setActionBarTitle("내 정보");
+            ((MainActivity) activity).findViewById(R.id.main_toolbar_image).setVisibility(View.INVISIBLE);
+            ((MainActivity) activity).findViewById(R.id.main_search_button).setVisibility(View.INVISIBLE);
+            ((MainActivity) activity).findViewById(R.id.main_like_button).setVisibility(View.INVISIBLE);
+        }
     }
 
 }

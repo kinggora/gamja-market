@@ -15,14 +15,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#FFFFFF"
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/homeactivity_category"
                 android:layout_width="match_parent"
-                android:layout_height="90dp">
+                android:layout_height="110dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp">
 
             </androidx.recyclerview.widget.RecyclerView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_marginBottom="15dp"
+                android:background="#EDEDED"
+                android:orientation="vertical"></LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/homeactivity_postlist"

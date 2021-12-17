@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.gamjamarket.Category.CategoryActivity;
 import com.example.gamjamarket.Category.PostInCategory1Activity;
 import com.example.gamjamarket.Category.PostInCategory2Activity;
@@ -84,7 +85,9 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
     public void onBindViewHolder (HomeCategoryAdapter.ViewHolder viewHolder, final int position){
         Log.d(TAG, "Element " + position + " set.");
         viewHolder.categoryName.setText(categoryList.get(position).getName());
-        //viewHolder.categoryImage.setImage();
+        Glide.with(viewHolder.categoryImage.getContext())
+                .load(categoryList.get(position).getIcon())
+                .into(viewHolder.categoryImage);
 
     }
 

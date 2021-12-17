@@ -4,59 +4,108 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Login.RegisterActivity">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView16"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:fontFamily="@font/noto_sans_cj_kkr_bold"
+        android:text="로그인"
+        android:textAlignment="viewStart"
+        android:textColor="#191919"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.099" />
+        app:layout_constraintVertical_bias="0.07" />
+
 
     <EditText
         android:id="@+id/login_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="244dp"
+        android:layout_width="350dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/register_edittext"
         android:ems="10"
-        android:hint="이메일 ID"
+        android:hint="이메일 아이디를 입력해주세요"
         android:inputType="textEmailAddress"
+        android:paddingLeft="15dp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <EditText
         android:id="@+id/login_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="46dp"
+        android:background="@drawable/register_edittext"
         android:ems="10"
-        android:hint="비밀번호"
+        android:hint="비밀번호를 입력해주세요"
         android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_email"
-        app:layout_constraintVertical_bias="0.119" />
+        app:layout_constraintVertical_bias="0.057" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="200dp"
+        android:background="#FFFFFF"
+        android:fontFamily="@font/noto_sans_cj_kkr_regular"
+        android:text="비밀번호"
+        android:textColor="#191919"
+        app:layout_constraintBottom_toTopOf="@+id/login_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="83dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="124dp"
+        android:background="#FFFFFF"
+        android:fontFamily="@font/noto_sans_cj_kkr_regular"
+        android:text="이메일 아이디"
+        android:textColor="#191919"
+        app:layout_constraintBottom_toTopOf="@+id/login_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.118"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="386dp"
         android:layout_height="167dp"
+        android:layout_marginTop="30dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_password">
+        app:layout_constraintTop_toBottomOf="@+id/login_password"
+        app:layout_constraintVertical_bias="0.0">
 
         <Button
             android:id="@+id/btn_login"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            style="@style/TextStyle3"
+            android:layout_width="350dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/brown_round_button"
             android:text="로그인" />
 
         <LinearLayout
@@ -71,7 +120,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="회원가입" />
+                android:text="회원가입"
+                android:textColor="#767676" />
 
             <TextView
                 android:id="@+id/login_findid"
@@ -79,7 +129,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="이메일 찾기" />
+                android:text="이메일 찾기"
+                android:textColor="#767676" />
 
             <TextView
                 android:id="@+id/login_findpass"
@@ -87,7 +138,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="비밀번호 찾기" />
+                android:text="비밀번호 찾기"
+                android:textColor="#767676" />
 
         </LinearLayout>
     </LinearLayout>
