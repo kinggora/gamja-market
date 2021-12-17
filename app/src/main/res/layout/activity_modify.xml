@@ -115,28 +115,33 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-    <EditText
-        android:id="@+id/modify_number"
-        android:background="@drawable/modifyborder"
-        android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:padding="15dp"
-        android:textSize="14sp"
-        android:textColor="#191919"
-        android:text="전화번호"
-        android:inputType="phone"
-        android:layout_marginBottom="6dp"/>
-    <Button
-        android:clickable="false"
-        android:id="@+id/modify_btn_codeRequest"
-        android:layout_width="wrap_content"
-        android:layout_height="26dp"
-        android:layout_alignParentRight="true"
-        android:layout_margin="10dp"
-        android:background="@drawable/confirmbnt"
-        android:text="인증번호 요청"
-        android:textColor="#ffffff"
-        android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/modify_number"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/modifyborder"
+            android:inputType="phone"
+            android:padding="15dp"
+            android:text="전화번호"
+            android:textColor="#191919"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/modify_btn_codeRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/confirmbnt"
+            android:clickable="false"
+            android:text="인증번호 요청"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
     </RelativeLayout>
     <TextView
         android:layout_marginLeft="16dp"
