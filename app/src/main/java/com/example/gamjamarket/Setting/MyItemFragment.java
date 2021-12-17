@@ -83,6 +83,13 @@ public class MyItemFragment extends Fragment {
                                 return;
                             }
 
+                            if(ONSALE && value.size()==0){
+                                imgview.setVisibility(View.VISIBLE);
+                                imgview.setImageResource(R.drawable.noitem);
+                            }else {
+                                imgview.setVisibility(View.INVISIBLE);
+                            }
+
                             for (QueryDocumentSnapshot doc : value) {
                                 String title = doc.getString("title");
                                 String contents = doc.getString("contents");
@@ -99,13 +106,8 @@ public class MyItemFragment extends Fragment {
                                         if(nickname != null){
                                             PostlistItem item = new PostlistItem(pid, title, contents, type, wuid, nickname, createdAt, likes);
                                             postList.add(item);
-                                            if(ONSALE && postList.isEmpty()){
-                                                imgview.setVisibility(View.VISIBLE);
-                                                imgview.setImageResource(R.drawable.noitem);
-                                            }else {
-                                                imgview.setVisibility(View.INVISIBLE);
-                                            }
                                             postAdapter.notifyDataSetChanged();
+
                                         }
                                     }
                                 });
@@ -124,7 +126,7 @@ public class MyItemFragment extends Fragment {
         } else {
             postAdapter = new MyItemAdapter(postList, ONSALE, getActivity());
             myitemListView.setAdapter(postAdapter);
+            getPostSet();
         }
-        getPostSet();
     }
 }

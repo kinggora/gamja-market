@@ -15,4 +15,9 @@
         <item name="android:maxHeight">47dip</item>
     </style>
 
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#ededed</item>
+        <item name="colorControlActivated">#af876d</item>
+    </style>
+
 </resources>

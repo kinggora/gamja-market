@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -27,6 +28,7 @@ public class PostviewFragment extends Fragment {
         WriteinfoModel model = (WriteinfoModel) getArguments().getSerializable("writeinfoModel");
         UserModel userModel = (UserModel) getArguments().getSerializable("userModel");
 
+        Button backBtn = view.findViewById(R.id.post_back);
         ImageView contentsImage = view.findViewById(R.id.post_contentsImageview);
         TextView title = view.findViewById(R.id.post_titleTextview);
         TextView time = view.findViewById(R.id.post_timeTextview);
@@ -40,6 +42,12 @@ public class PostviewFragment extends Fragment {
         ImageView sellerImg = view.findViewById(R.id.post_userimage);
         RatingBar ratingBar = view.findViewById(R.id.post_rating);
 
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
         Glide.with(getActivity())
                 .load(model.getContents())
                 .into(contentsImage);

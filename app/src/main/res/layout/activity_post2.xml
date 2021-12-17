@@ -21,24 +21,26 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_gravity="bottom"
-        android:background="#FFFFFF"
         android:layout_marginTop="10dp"
+        android:background="#FFFFFF"
         android:elevation="15dp"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:paddingRight="10dp">
 
         <ImageView
             android:id="@+id/post2_heartImageview"
-            android:layout_width="80dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"
-            android:paddingRight="30dp"
+            android:layout_marginRight="20dp"
             android:src="@drawable/heart_line" />
 
         <Button
             android:id="@+id/post2_chatBtn"
-            android:layout_width="140dp"
+            android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_margin="5dp"
+            android:layout_weight="1"
             android:background="@drawable/postview2_button1"
             android:elevation="10dp"
             android:fontFamily="@font/noto_sans_cj_kkr_bold"
@@ -49,9 +51,11 @@
 
         <Button
             android:id="@+id/post2_callBtn"
-            android:layout_width="140dp"
+            android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_margin="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
             android:background="@drawable/postview2_button2"
             android:elevation="10dp"
             android:fontFamily="@font/noto_sans_cj_kkr_bold"

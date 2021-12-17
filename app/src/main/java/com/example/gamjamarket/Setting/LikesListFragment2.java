@@ -70,12 +70,6 @@ public class LikesListFragment2 extends Fragment {
                     if (document.exists()) {
                         if(document.get("board2")!=null){
                             List<String> board2 = (List<String>)document.get("board2");
-                            if(board2.size()!=0){
-                                imgview.setVisibility(View.INVISIBLE);
-                            }else{
-                                imgview.setVisibility(View.VISIBLE);
-                                imgview.setImageResource(R.drawable.nolike);
-                            }
                             for(String mpid: board2) {
                                 db.collection("board2").document(mpid)
                                         .addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -85,6 +79,12 @@ public class LikesListFragment2 extends Fragment {
                                                 if (error != null) {
                                                     Log.e("Firestore error", error.getMessage());
                                                     return;
+                                                }
+                                                if(board2.size()!=0){
+                                                    imgview.setVisibility(View.INVISIBLE);
+                                                }else{
+                                                    imgview.setVisibility(View.VISIBLE);
+                                                    imgview.setImageResource(R.drawable.nodonate);
                                                 }
                                                 if (ds != null && ds.exists()){
                                                     String title = ds.getString("title");
@@ -109,13 +109,13 @@ public class LikesListFragment2 extends Fragment {
                         else{
                             Log.d(TAG, "해당 게시판에는 찜한 게시글이 없음", task.getException());
                             imgview.setVisibility(View.VISIBLE);
-                            imgview.setImageResource(R.drawable.nolike);
+                            imgview.setImageResource(R.drawable.nodonate);
 
                         }
                     } else {
                         Log.d(TAG, "찜목록 생성 안됨. 찜을 한 기록이 없음.", task.getException());
                         imgview.setVisibility(View.VISIBLE);
-                        imgview.setImageResource(R.drawable.nolike);
+                        imgview.setImageResource(R.drawable.nodonate);
                     }
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
@@ -132,6 +132,7 @@ public class LikesListFragment2 extends Fragment {
             postAdapter = new LikesList2Adapter(postList, getActivity());
             likesListView.setAdapter(postAdapter);
         }
+
         getPostSet();
     }
 
