@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">GamjaMarket</string>
+    <string name="home">home</string>
+    <string name="home2">home2</string>
+    <string name="write">write</string>
+    <string name="chat">chat</string>
+    <string name="info">info</string>
 </resources>
